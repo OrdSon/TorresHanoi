@@ -14,19 +14,29 @@ import javax.swing.JLabel;
  * @author phily
  */
 public class Torre extends JLabel{
-    private LinkedList<Disco> listadoDiscos;
-    private final int numero;        
+    private LinkedList<Disco> listadoDiscos = new LinkedList<>();       
+    private int numero = 0;
     
-    public Torre(LinkedList<Disco> discos, int numeroTorre, int width, int height, int puntoX, int puntoY){
-        listadoDiscos = discos;
+    public Torre() {
+        this.setText("torre?");
+    }
+    
+    public Torre(int numeroTorre, int width, int height, int puntoX, int puntoY){
         numero = numeroTorre;
         this.setSize(width, height);
         this.setLocation(new Point(puntoX, puntoY));
     }
     
-    public void establecerListaDiscos(Disco disco){
-        listadoDiscos.add(disco);
-    }
+    public void llenar(int cantidad){
+        for (int i = 0; i < cantidad; i++) {
+            int alto = 40;
+            int x = ((int)this.getLocation().getX())+((int)(this.getSize().getWidth()/2));
+            int y = (600-(40*i));
+            int ancho = (300 - (20*i));
+            Disco disco = new Disco(alto, ancho, x, y);
+            listadoDiscos.add(disco);
+        }
+    } 
     
     public void vaciarTorre(){
         listadoDiscos.clear();
@@ -38,6 +48,10 @@ public class Torre extends JLabel{
     
     public void sacarDisco(){
         listadoDiscos.removeLast();
+    }
+    
+    public void eliminarDisco(Disco disco){
+        listadoDiscos.remove(disco);
     }
     
 }
