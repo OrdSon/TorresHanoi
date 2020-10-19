@@ -8,6 +8,7 @@ package objetos;
 import Juego.Juego;
 import java.awt.Cursor;
 import java.awt.Dimension;
+import java.awt.Image;
 import java.awt.Point;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
@@ -39,7 +40,7 @@ public class Disco extends JLabel implements MouseListener, MouseMotionListener 
         //se inician propiedades de objeto
         this.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
         this.setSize(new Dimension(300, 50));
-        this.setPreferredSize(new Dimension(300, 50));
+        this.setPreferredSize(new Dimension(300, 40));
         this.setIcon(new ImageIcon("1.png"));
         this.setText("");
         this.setVisible(true);
@@ -55,7 +56,13 @@ public class Disco extends JLabel implements MouseListener, MouseMotionListener 
         this.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
         this.setSize(dimension);
         this.setPreferredSize(dimension);
-        this.setIcon(new ImageIcon("1.png"));
+
+        ImageIcon imageIcon = new ImageIcon("1.png"); // load the image to a imageIcon
+        Image image = imageIcon.getImage(); // transform it 
+        Image newimg = image.getScaledInstance(dimension.width, dimension.height, java.awt.Image.SCALE_SMOOTH); // scale it the smooth way  
+        imageIcon = new ImageIcon(newimg);
+
+        this.setIcon(imageIcon);
         this.setText("");
         this.setVisible(true);
         this.setLocation(new Point(0, 0));
@@ -110,7 +117,7 @@ public class Disco extends JLabel implements MouseListener, MouseMotionListener 
      * El número depende del tamanio el cual es correspondiente al > o <
      * valor... @r
      *
-
+     *
      *
      * eturn
      */
@@ -180,8 +187,6 @@ public class Disco extends JLabel implements MouseListener, MouseMotionListener 
     public void setNumero(int numero) {
         this.numero = numero;
     }
-    
-    
 
     /**
      * reestablece el último punto correcto relativo a una torre [el cual es

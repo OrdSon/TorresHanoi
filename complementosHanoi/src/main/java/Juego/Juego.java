@@ -36,7 +36,7 @@ public class Juego {
 
     public void iniciar(JComponent component, int cantidad) {
         for (int i = 0; i < cantidad; i++) {
-            Dimension dimension = new Dimension((300 - (30 * i)), 50);
+            Dimension dimension = new Dimension((300 - (30 * i)), 40);
             Disco disco = new Disco(dimension, (i + 1));
             component.add(disco);
             disco.setTorre(torres.get(0));

@@ -21,8 +21,8 @@ public class Torre extends LinkedList<Disco> {
     
     public void ubicar(){
         for (int i = 0; i < size(); i++) {
-            int x = ((posicion)+(15*i));
-            int y = (500-(55*i));
+            int x = posicion + (300 - get(i).getSize().width)/2;
+            int y = (500-(45*i));
             Point point = new Point(x,y);
             get(i).setLocation(point);
             get(i).setAbsoluto(point);
